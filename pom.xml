@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.czh.cloud.turbine</groupId>
+    <artifactId>turbine-server</artifactId>
+    <version>1.0.0</version>
+
+    <parent>
+        <groupId>com.czh.cloud.root</groupId>
+        <artifactId>root-server</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../root-server/pom.xml</relativePath>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+
+    <dependencies>
+        <!-- 统一引入common包，common包中包含log4j2的公共配置 begin-->
+        <dependency>
+            <groupId>com.czh.cloud.common</groupId>
+            <artifactId>cloud-common</artifactId>
+            <version>${com.czh.cloud.cloud-common.version}</version>
+        </dependency>
+        <!-- 统一引入common包，common包中包含log4j2的公共配置 end-->
+
+        <!-- turbine -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-turbine</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-turbine</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>turbine-server</finalName>
+        <plugins>
+            <plugin><!-- 使用Spring-Boot-tarter-parent pom,只需要添加该插件而无需配置,Maven插件，它可以将项目打包成一个可执行jar/war -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
